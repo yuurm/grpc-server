@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package phonebook;
+
+message Entry {
+    string first_name = 1;
+    string last_name = 2;
+    string patronymic = 3;
+    string phone_number = 4;
+    string note = 5;
+}
+
+service PhoneBookService {
+    rpc AddEntry(Entry) returns (google.protobuf.Empty);
+    rpc DeleteEntry(Entry) returns (google.protobuf.Empty);
+    rpc SearchEntry(Entry) returns (stream Entry); //o, o1, o2....
+    rpc ViewEntry(Entry) returns (Entry);
+}
